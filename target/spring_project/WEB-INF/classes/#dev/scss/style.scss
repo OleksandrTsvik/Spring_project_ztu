@@ -1,0 +1,56 @@
+@import "reset";
+@import "fonts";
+@import "icons-font";
+@import "ui";
+@import "header";
+@import "footer";
+
+//https://www.youtube.com/watch?v=vkq7ckCkvjY
+//mixins 26:58
+//burger 37:00 - 1:00:00
+
+$fontFamily: "Gilroy";
+
+$minWidth: 320px;
+$maxWidth: 1440px;
+$maxWidthContainer: 1380px;
+$md1: $maxWidthContainer + 12px;
+$md2: 991px;
+$md3: 767px;
+$md4: 479px;
+
+body {
+  display: flex;
+  flex-direction: column;
+
+  font-family: $fontFamily;
+  background: linear-gradient(360deg, #211F20 0%, #44403F 100%);
+}
+
+.container {
+  max-width: $maxWidthContainer;
+  margin: 0 auto;
+  padding: 0 10px;
+
+  @media (max-width: $md1) {
+    max-width: 970px;
+  }
+
+  @media (max-width: $md2) {
+    max-width: 750px;
+  }
+
+  @media (max-width: $md3) {
+    max-width: none;
+    padding: 0 10px;
+  }
+}
+
+.main {
+  flex: 1 1 auto;
+}
+
+.banner__img {
+  max-width: 100%;
+  object-fit: cover;
+}
