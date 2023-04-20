@@ -1,6 +1,5 @@
 package ztu.education.spring_web_project.dao;
 
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,5 +39,11 @@ public class DishDAOImpl implements DishDAO {
                 .createQuery("delete from Dish where id = :dishID")
                 .setParameter("dishID", id)
                 .executeUpdate();
+    }
+
+    public void deleteDish(Dish dish) {
+        Session session = sessionFactory.getCurrentSession();
+
+        session.delete(dish);
     }
 }

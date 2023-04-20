@@ -6,7 +6,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import ztu.education.spring_web_project.dto.DishSaveDTO;
-import ztu.education.spring_web_project.entity.Dish;
 import ztu.education.spring_web_project.service.CategoryDishService;
 import ztu.education.spring_web_project.service.DishService;
 
@@ -58,17 +57,16 @@ public class DishController {
             HttpSession session
     ) {
         if (!bindingResult.hasErrors()) {
-            String imagePath = session.getServletContext().getRealPath("/") + "resources\\images";
-
-            System.out.println(imagePath);
+            String pathImagesDir = session.getServletContext().getRealPath("/") + "resources\\images";
 
             try {
-                dishService.saveOrUpdateDish(dish, imagePath);
+                dishService.saveOrUpdateDish(dish, pathImagesDir);
+                model.addAttribute("dishMessage", "Страву успішно збережено");
             } catch (IOException e) {
                 e.printStackTrace();
+                model.addAttribute("dishMessage", "Під час збереження страви виникла помилка");
             }
 
-            model.addAttribute("dishMessage", "Страву успішно збережено");
             model.addAttribute("dish", new DishSaveDTO());
         } else {
             model.addAttribute("dish", dish);
@@ -88,9 +86,21 @@ public class DishController {
     }
 
     @RequestMapping(value = "/admin/dish/delete/{id}", method = RequestMethod.GET)
-    public String deleteDish(@PathVariable("id") int id, Model model) {
-        model.addAttribute("deleteMessage", "Кількість видалених записів = " +
-                dishService.deleteDish(id));
+    public String deleteDish(
+            @PathVariable("id") int id,
+            Model model,
+            HttpSession session
+    ) {
+        String pathImagesDir = session.getServletContext().getRealPath("/") + "resources\\images";
+
+        try {
+            dishService.deleteDish(id, pathImagesDir);
+            model.addAttribute("deleteMessage", "Страву успішно видалено");
+        } catch (IOException e) {
+            e.printStackTrace();
+            model.addAttribute("deleteMessage", "Під час видалення страви виникла помилка");
+        }
+
         model.addAttribute("dishes", dishService.getAllDishes());
 
         return "dishes";

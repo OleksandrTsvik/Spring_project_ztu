@@ -97,10 +97,20 @@
             <artifactId>commons-fileupload</artifactId>
             <version>1.4</version>
         </dependency>
-        
+
     </dependencies>
 
     <build>
         <finalName>spring_project</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>7</source>
+                    <target>7</target>
+                </configuration>
+            </plugin>
+        </plugins>
     </build>
 </project>

@@ -28,10 +28,10 @@
             <form:errors path="name" cssClass="field__errors" />
         </div>
         <div class="form__field">
-            <label for="categoryDish" class="form__label">Категорія</label>
+            <label for="categoryDish.id" class="form__label">Категорія</label>
             <div class="select__wrapper">
-                <form:select path="categoryDish">
-                    <form:option value="" label="Оберіть категорію" />
+                <form:select path="categoryDish.id">
+                    <%-- <form:option value="" label="Оберіть категорію" />--%>
                     <form:options items="${categoriesDish}" itemValue="id" itemLabel="name" />
                 </form:select>
             </div>

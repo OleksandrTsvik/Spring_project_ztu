@@ -22,6 +22,6 @@ public class CategoryDish {
     @Column(name = "name", nullable = false, unique = true, length = 128)
     private String name;
 
-    @OneToMany(mappedBy = "categoryDish", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "categoryDish", fetch = FetchType.EAGER)
     private List<Dish> dishes;
 }
