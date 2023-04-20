@@ -6,7 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 import ztu.education.spring_web_project.dao.DishDAO;
 import ztu.education.spring_web_project.dto.DishSaveDTO;
 import ztu.education.spring_web_project.entity.Dish;
-import ztu.education.spring_web_project.utils.Files;
+import ztu.education.spring_web_project.utils.FileManager;
 
 import java.io.IOException;
 import java.util.List;
@@ -42,8 +42,8 @@ public class DishServiceImpl implements DishService {
     }
 
     @Transactional
-    public Dish saveOrUpdateDish(DishSaveDTO dishDTO, String imagePath) throws IOException {
-        String imageName = Files.uploadFile(dishDTO.getImage(), imagePath);
+    public Dish saveOrUpdateDish(DishSaveDTO dishDTO, String pathImagesDir) throws IOException {
+        String imageName = FileManager.uploadFile(dishDTO.getImage(), pathImagesDir);
 
         Dish dish = new Dish();
 
@@ -58,7 +58,17 @@ public class DishServiceImpl implements DishService {
     }
 
     @Transactional
-    public int deleteDish(int id) {
-        return dishDAO.deleteDish(id);
+    public void deleteDish(int id, String pathImagesDir) throws IOException {
+        Dish dish = this.getDish(id);
+
+        if (dish == null) {
+            return;
+        }
+
+        if (dish.getImageName() != null && !dish.getImageName().isEmpty()) {
+            FileManager.deleteFile(pathImagesDir + "\\" + dish.getImageName());
+        }
+
+        dishDAO.deleteDish(dish);
     }
 }

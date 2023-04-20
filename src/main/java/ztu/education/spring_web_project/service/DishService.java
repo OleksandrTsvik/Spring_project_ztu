@@ -7,13 +7,13 @@ import java.io.IOException;
 import java.util.List;
 
 public interface DishService {
-    public List<Dish> getAllDishes();
+    List<Dish> getAllDishes();
 
-    public Dish getDish(int id);
+    Dish getDish(int id);
 
-    public DishSaveDTO getDishSaveDTO(int id);
+    DishSaveDTO getDishSaveDTO(int id);
 
-    public Dish saveOrUpdateDish(DishSaveDTO dishDTO, String imagePath) throws IOException;
+    Dish saveOrUpdateDish(DishSaveDTO dishDTO, String pathImagesDir) throws IOException;
 
-    public int deleteDish(int id);
+    void deleteDish(int id, String pathImagesDir) throws IOException;
 }
