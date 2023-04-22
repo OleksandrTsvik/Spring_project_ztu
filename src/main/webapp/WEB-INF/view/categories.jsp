@@ -21,12 +21,14 @@
             <tr>
                 <th>ID</th>
                 <th>Категорія</th>
+                <th class="count">Кількість страв</th>
                 <th class="actions"></th>
             </tr>
             <c:forEach var="category" items="${categories}">
                 <tr>
                     <td>${category.id}</td>
                     <td>${category.name}</td>
+                    <td class="count">${category.dishes.size()}</td>
                     <td>
                         <div class="actions">
                             <a href="/admin/category/edit/${category.id}"

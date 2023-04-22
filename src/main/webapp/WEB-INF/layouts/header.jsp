@@ -37,13 +37,13 @@
             <div class="draggable__icon-left">
                 <i class="_icon-up-arrow"></i>
             </div>
-            <nav class="draggable__list">
+            <nav class="admin__list draggable__list">
                 <c:forEach var="item" items="${NavBar.getAdminNavBar()}">
                     <c:if test="${not empty param.link && item.link.equals(param.link)}">
-                        <a href="${item.link}" class="draggable__item active">${item.label}</a>
+                        <a href="${item.link}" class="admin__item draggable__item active">${item.label}</a>
                     </c:if>
                     <c:if test="${empty param.link || !item.link.equals(param.link)}">
-                        <a href="${item.link}" class="draggable__item">${item.label}</a>
+                        <a href="${item.link}" class="admin__item draggable__item">${item.label}</a>
                     </c:if>
                 </c:forEach>
             </nav>

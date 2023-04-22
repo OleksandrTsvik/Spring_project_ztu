@@ -1,6 +1,7 @@
 package ztu.education.spring_web_project.entity;
 
 import lombok.Data;
+import lombok.ToString;
 import ztu.education.spring_web_project.validation.CheckUniqueCategoryDishName;
 
 import javax.persistence.*;
@@ -11,6 +12,7 @@ import java.util.List;
 @Entity
 @Table(name = "categories_dishes")
 @Data
+@ToString(exclude = {"dishes"})
 public class CategoryDish {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
