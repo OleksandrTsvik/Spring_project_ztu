@@ -48,6 +48,7 @@ public class DishServiceImpl implements DishService {
         Dish dish = new Dish();
 
         dish.setId(dishDTO.getId());
+        dish.setCategoryDish(dishDTO.getCategoryDish());
         dish.setName(dishDTO.getName());
         dish.setDescription(dishDTO.getDescription());
         dish.setComponents(dishDTO.getComponents());

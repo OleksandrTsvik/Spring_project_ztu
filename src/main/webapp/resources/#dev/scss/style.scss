@@ -74,6 +74,11 @@ body {
     width: 80px;
   }
 
+  .count {
+    width: 180px;
+    text-align: center;
+  }
+
   th.actions {
     width: 148px;
   }
@@ -147,6 +152,17 @@ body {
     align-items: flex-end;
     gap: 10px;
   }
+}
+
+.category__title {
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 40px;
+  text-transform: uppercase;
+  margin: 30px 0 20px;
+  padding: 0 20px;
+  color: #FFFFFF;
+  border-left: 4px solid #618967;;
 }
 
 .container__404 {
