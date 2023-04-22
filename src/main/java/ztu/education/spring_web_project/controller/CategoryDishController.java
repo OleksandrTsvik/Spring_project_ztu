@@ -1,6 +1,7 @@
 package ztu.education.spring_web_project.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.server.ResponseStatusException;
 import ztu.education.spring_web_project.entity.CategoryDish;
 import ztu.education.spring_web_project.service.CategoryDishService;
 
@@ -51,7 +53,13 @@ public class CategoryDishController {
 
     @RequestMapping(value = "/admin/category/edit/{id}", method = RequestMethod.GET)
     public String editDish(@PathVariable("id") int id, Model model) {
-        model.addAttribute("category", categoryDishService.getCategoryDish(id));
+        CategoryDish categoryDish = categoryDishService.getCategoryDish(id);
+
+        if (categoryDish == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+
+        model.addAttribute("category", categoryDish);
 
         return "formCategoryDish";
     }
