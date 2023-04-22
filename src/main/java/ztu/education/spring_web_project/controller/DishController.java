@@ -1,11 +1,14 @@
 package ztu.education.spring_web_project.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 import ztu.education.spring_web_project.dto.DishSaveDTO;
+import ztu.education.spring_web_project.entity.Dish;
 import ztu.education.spring_web_project.service.CategoryDishService;
 import ztu.education.spring_web_project.service.DishService;
 
@@ -21,10 +24,18 @@ public class DishController {
     @Autowired
     private CategoryDishService categoryDishService;
 
-//    @RequestMapping("/dish")
-//    public String dish() {
-//        return "dish";
-//    }
+    @RequestMapping("/dish/{id}")
+    public String dish(@PathVariable("id") int id, Model model) {
+        Dish dish = dishService.getDish(id);
+
+        if (dish == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+
+        model.addAttribute("dish", dish);
+
+        return "dish";
+    }
 
     // список страв по пошуку або за категорією
     @RequestMapping("/dishes")
