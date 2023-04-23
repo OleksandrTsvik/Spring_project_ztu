@@ -25,7 +25,7 @@
                     </a>
                 </div>
                 <div class="menu__left">
-                    <a href="#" class="menu__user _icon-user">Увійти</a>
+                    <a href="/user/login" class="menu__user _icon-user">Увійти</a>
                     <a href="#" class="menu__basket">
                         <span class="basket__text">Корзина</span>
                         <span class="basket__pill">4</span>
