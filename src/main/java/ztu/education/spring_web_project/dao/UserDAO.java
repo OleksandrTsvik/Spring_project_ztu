@@ -12,4 +12,6 @@ public interface UserDAO {
     List<User> getAllUsers();
 
     User saveOrUpdateUser(User user);
+
+    int deleteUser(int id);
 }

@@ -3,14 +3,14 @@
 
 <html>
 <jsp:include page="../layouts/head.jsp">
-    <jsp:param name="title" value="Вхід" />
+    <jsp:param name="title" value="Вхід в адмін-панель" />
 </jsp:include>
 <body>
 <%@include file="../layouts/header.jsp" %>
 <main class="main main__wrapper container">
-    <div class="title">Вхід</div>
+    <div class="title">Адмін-панель</div>
     <form:form
-            action="/user/login"
+            action="/admin/login"
             modelAttribute="login"
             method="post"
             cssClass="form form__auth"
@@ -28,14 +28,7 @@
             <form:input path="password" type="password" cssClass="input" />
             <form:errors path="password" cssClass="field__errors" />
         </div>
-        <button type="submit" class="btn btn__submit auth__btn">Увійти</button>
-        <div class="auth__link">
-            <div>Немає облікового запису?</div>
-            <a href="/user/register">Перейти до реєстрації</a>
-        </div>
-        <div class="auth__admin-link">
-            <a href="/admin/login">Увійти як адміністратор</a>
-        </div>
+        <button type="submit" class="btn btn__submit auth__btn">Увійти як адміністратор</button>
     </form:form>
 </main>
 <%@include file="../layouts/footer.jsp" %>

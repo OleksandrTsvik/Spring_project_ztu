@@ -17,6 +17,11 @@
     margin: 0 0 8px 4px;
     color: #FFFFFF;
   }
+
+  .btn__submit {
+    display: block;
+    margin-left: auto;
+  }
 }
 
 .form__auth {
@@ -48,6 +53,22 @@
       &:hover {
         text-decoration: none;
         color: #6D9C74;
+      }
+    }
+  }
+
+  .auth__admin-link {
+    font-size: 12px;
+    text-align: right;
+    margin-top: 40px;
+
+    a {
+      color: #CFCFCF;
+      text-decoration: underline;
+
+      &:hover {
+        text-decoration: none;
+        color: #C2B6BC;
       }
     }
   }

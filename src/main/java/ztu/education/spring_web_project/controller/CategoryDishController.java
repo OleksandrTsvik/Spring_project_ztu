@@ -24,7 +24,7 @@ public class CategoryDishController {
     public String categories(Model model) {
         model.addAttribute("categories", categoryDishService.getAllCategoriesDish());
 
-        return "categories";
+        return "listCategories";
     }
 
     @RequestMapping(value = "/admin/category", method = RequestMethod.GET)
@@ -70,6 +70,6 @@ public class CategoryDishController {
                 categoryDishService.deleteCategoryDish(id));
         model.addAttribute("categories", categoryDishService.getAllCategoriesDish());
 
-        return "categories";
+        return "listCategories";
     }
 }

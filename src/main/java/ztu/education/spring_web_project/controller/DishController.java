@@ -49,7 +49,7 @@ public class DishController {
         model.addAttribute("dishes", dishService.getAllDishes());
         model.addAttribute("dishName", dishName);
 
-        return "dishes";
+        return "listDishes";
     }
 
     @RequestMapping(value = "/admin/dish", method = RequestMethod.GET)
@@ -114,6 +114,6 @@ public class DishController {
 
         model.addAttribute("dishes", dishService.getAllDishes());
 
-        return "dishes";
+        return "listDishes";
     }
 }

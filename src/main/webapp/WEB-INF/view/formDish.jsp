@@ -55,7 +55,7 @@
             <label for="image" class="form__label">Фото</label>
             <form:input path="image" type="file" cssClass="input" />
         </div>
-        <button type="submit" class="btn form__submit">Зберегти</button>
+        <button type="submit" class="btn btn__submit">Зберегти</button>
     </form:form>
 </main>
 <%@include file="../layouts/footer.jsp" %>

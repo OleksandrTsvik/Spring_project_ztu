@@ -28,10 +28,13 @@
             <form:input path="password" type="password" cssClass="input" />
             <form:errors path="password" cssClass="field__errors" />
         </div>
-        <button type="submit" class="btn form__submit auth__btn">Увійти</button>
+        <button type="submit" class="btn btn__submit auth__btn">Увійти</button>
         <div class="auth__link">
             <div>Немає облікового запису?</div>
             <a href="/user/register">Перейти до реєстрації</a>
+        </div>
+        <div class="auth__admin-link">
+            <a href="/admin/login">Увійти як адміністратор</a>
         </div>
     </form:form>
 </main>
