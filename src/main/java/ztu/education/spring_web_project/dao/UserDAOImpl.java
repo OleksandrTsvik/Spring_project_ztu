@@ -13,6 +13,7 @@ public class UserDAOImpl implements UserDAO {
     @Autowired
     private SessionFactory sessionFactory;
 
+    @Override
     public User findByEmail(String email) {
         Session session = sessionFactory.getCurrentSession();
 
@@ -25,6 +26,7 @@ public class UserDAOImpl implements UserDAO {
                 .orElse(null);
     }
 
+    @Override
     public User findByPhoneNumber(String phoneNumber) {
         Session session = sessionFactory.getCurrentSession();
 
@@ -37,12 +39,14 @@ public class UserDAOImpl implements UserDAO {
                 .orElse(null);
     }
 
+    @Override
     public List<User> getAllUsers() {
         Session session = sessionFactory.getCurrentSession();
 
         return session.createQuery("from User", User.class).getResultList();
     }
 
+    @Override
     public User saveOrUpdateUser(User user) {
         Session session = sessionFactory.getCurrentSession();
         session.saveOrUpdate(user);

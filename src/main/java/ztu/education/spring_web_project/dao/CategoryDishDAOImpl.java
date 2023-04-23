@@ -13,18 +13,21 @@ public class CategoryDishDAOImpl implements CategoryDishDAO {
     @Autowired
     private SessionFactory sessionFactory;
 
+    @Override
     public List<CategoryDish> getAllCategoriesDish() {
         Session session = sessionFactory.getCurrentSession();
 
         return session.createQuery("from CategoryDish", CategoryDish.class).getResultList();
     }
 
+    @Override
     public CategoryDish getCategoryDish(int id) {
         Session session = sessionFactory.getCurrentSession();
 
         return session.get(CategoryDish.class, id);
     }
 
+    @Override
     public CategoryDish findByName(String name) {
         Session session = sessionFactory.getCurrentSession();
 
@@ -37,6 +40,7 @@ public class CategoryDishDAOImpl implements CategoryDishDAO {
                 .orElse(null);
     }
 
+    @Override
     public CategoryDish saveOrUpdateCategoryDish(CategoryDish categoryDish) {
         Session session = sessionFactory.getCurrentSession();
         session.saveOrUpdate(categoryDish);
@@ -44,6 +48,7 @@ public class CategoryDishDAOImpl implements CategoryDishDAO {
         return categoryDish;
     }
 
+    @Override
     public int deleteCategoryDish(int id) {
         Session session = sessionFactory.getCurrentSession();
 

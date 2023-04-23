@@ -1,7 +1,6 @@
 package ztu.education.spring_web_project.validation;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import ztu.education.spring_web_project.entity.CategoryDish;
 import ztu.education.spring_web_project.service.CategoryDishService;
 
 import javax.validation.ConstraintValidator;
@@ -12,10 +11,12 @@ public class CheckUniqueCategoryDishNameValidator implements ConstraintValidator
     private CategoryDishService categoryDishService;
 
     // Ініціалізація
+    @Override
     public void initialize(CheckUniqueCategoryDishName constraintAnnotation) {
     }
 
     // Перевірка
+    @Override
     public boolean isValid(String name, ConstraintValidatorContext constraintValidatorContext) {
         return categoryDishService.findByName(name) == null;
     }

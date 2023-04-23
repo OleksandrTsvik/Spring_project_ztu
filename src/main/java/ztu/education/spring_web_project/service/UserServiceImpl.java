@@ -17,6 +17,7 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserDAO userDAO;
 
+    @Override
     @Transactional
     public User register(UserRegisterDTO userRegisterDTO) {
         if (userDAO.findByEmail(userRegisterDTO.getEmail()) != null) {
@@ -39,6 +40,7 @@ public class UserServiceImpl implements UserService {
         return userDAO.saveOrUpdateUser(newUser);
     }
 
+    @Override
     @Transactional
     public User login(UserLoginDTO userLoginDTO) {
         User user = userDAO.findByEmail(userLoginDTO.getEmail());
@@ -54,6 +56,7 @@ public class UserServiceImpl implements UserService {
         return user;
     }
 
+    @Override
     @Transactional
     public List<User> getAllUsers() {
         return userDAO.getAllUsers();
