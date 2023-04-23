@@ -16,7 +16,7 @@
         <div class="card__content">
             <div class="card__body">
                 <p>${requestScope.dish.name}</p>
-                <p class="card__dish-price">${requestScope.dish.price}</p>
+                <p class="card__dish-price">${requestScope.dish.price} грн.</p>
             </div>
             <div class="card__footer">
                 <a href="/admin/dish/edit/${requestScope.dish.id}"

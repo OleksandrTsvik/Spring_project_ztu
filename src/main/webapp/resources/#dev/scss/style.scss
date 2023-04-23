@@ -134,6 +134,10 @@ body {
   gap: 20px;
   flex-wrap: wrap;
 
+  .draggable__item {
+    display: flex;
+  }
+
   .card__dish {
     flex: 0 1 auto;
     width: 256px;
@@ -180,6 +184,7 @@ body {
     .card__dish-price {
       font-weight: 500;
       text-align: right;
+      color: #FFFFFF;
     }
   }
 
@@ -279,6 +284,7 @@ body {
 }
 
 .category__title {
+  display: block;
   font-weight: 700;
   font-size: 32px;
   line-height: 40px;
@@ -286,7 +292,19 @@ body {
   margin: 30px 0 20px;
   padding: 0 20px;
   color: #FFFFFF;
-  border-left: 4px solid #618967;;
+  border-left: 4px solid #618967;
+
+  &:hover {
+    color: #618967;
+    border-left-color: #FFFFFF;
+  }
+}
+
+.search__parameter {
+  font-weight: 500;
+  font-size: 16px;
+  margin-bottom: 15px;
+  color: #CFCFCF;
 }
 
 .container__404 {
