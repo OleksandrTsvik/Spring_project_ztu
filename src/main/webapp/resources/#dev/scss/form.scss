@@ -18,3 +18,37 @@
     color: #FFFFFF;
   }
 }
+
+.form__auth {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 350px;
+
+  .auth__btn {
+    width: 100%;
+  }
+
+  .auth__link {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 16px;
+    font-size: 14px;
+    width: 100%;
+    margin-top: 30px;
+
+    div {
+      color: #CFCFCF;
+    }
+
+    a {
+      color: #FFFFFF;
+      text-decoration: underline;
+
+      &:hover {
+        text-decoration: none;
+        color: #6D9C74;
+      }
+    }
+  }
+}
