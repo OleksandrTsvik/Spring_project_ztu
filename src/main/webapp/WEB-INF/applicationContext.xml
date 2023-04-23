@@ -75,6 +75,9 @@
     <!-- Активація анотації, описаної вище -->
     <tx:annotation-driven transaction-manager="transactionManager" />
 
+    <!-- Наповнення БД початковими даними -->
+    <bean id="adminSeed" class="ztu.education.spring_web_project.seed.AdminSeed" />
+
     <!-- Завантаження картинок через контролер -->
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
     <!--    <mvc:default-servlet-handler />-->

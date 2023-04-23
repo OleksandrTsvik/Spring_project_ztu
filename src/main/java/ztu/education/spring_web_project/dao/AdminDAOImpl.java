@@ -4,21 +4,28 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import ztu.education.spring_web_project.entity.User;
+import ztu.education.spring_web_project.entity.Admin;
 
 import java.util.List;
 
 @Repository
-public class UserDAOImpl implements UserDAO {
+public class AdminDAOImpl implements AdminDAO {
     @Autowired
     private SessionFactory sessionFactory;
 
     @Override
-    public User findByEmail(String email) {
+    public Admin getAdmin(int id) {
+        Session session = sessionFactory.getCurrentSession();
+
+        return session.get(Admin.class, id);
+    }
+
+    @Override
+    public Admin findByEmail(String email) {
         Session session = sessionFactory.getCurrentSession();
 
         return session
-                .createQuery("from User where email = :email", User.class)
+                .createQuery("from Admin where email = :email", Admin.class)
                 .setParameter("email", email)
                 .setMaxResults(1)
                 .stream()
@@ -27,39 +34,26 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public User findByPhoneNumber(String phoneNumber) {
+    public List<Admin> getAllAdmins() {
+        Session session = sessionFactory.getCurrentSession();
+
+        return session.createQuery("from Admin", Admin.class).getResultList();
+    }
+
+    @Override
+    public Admin saveOrUpdateAdmin(Admin admin) {
+        Session session = sessionFactory.getCurrentSession();
+        session.saveOrUpdate(admin);
+
+        return admin;
+    }
+
+    @Override
+    public int deleteAdmin(int id) {
         Session session = sessionFactory.getCurrentSession();
 
         return session
-                .createQuery("from User where phoneNumber = :phoneNumber", User.class)
-                .setParameter("phoneNumber", phoneNumber)
-                .setMaxResults(1)
-                .stream()
-                .findFirst()
-                .orElse(null);
-    }
-
-    @Override
-    public List<User> getAllUsers() {
-        Session session = sessionFactory.getCurrentSession();
-
-        return session.createQuery("from User", User.class).getResultList();
-    }
-
-    @Override
-    public User saveOrUpdateUser(User user) {
-        Session session = sessionFactory.getCurrentSession();
-        session.saveOrUpdate(user);
-
-        return user;
-    }
-
-    @Override
-    public int deleteUser(int id) {
-        Session session = sessionFactory.getCurrentSession();
-
-        return session
-                .createQuery("delete from User where id = :id")
+                .createQuery("delete from Admin where id = :id")
                 .setParameter("id", id)
                 .executeUpdate();
     }

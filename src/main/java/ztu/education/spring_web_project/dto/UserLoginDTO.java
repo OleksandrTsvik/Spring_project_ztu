@@ -9,7 +9,7 @@ import javax.validation.constraints.Size;
 @Data
 public class UserLoginDTO {
     @NotBlank(message = "Введіть електронну пошту")
-    @Size(max = 64, message = "Назва страви повинна містити не більше 64 символів")
+    @Size(max = 64, message = "Електронна адреса повинна містити не більше 64 символів")
     @Email(message = "Некоректна електронна адреса")
     private String email;
 

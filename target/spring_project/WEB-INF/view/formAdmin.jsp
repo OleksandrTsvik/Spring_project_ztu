@@ -3,31 +3,27 @@
 
 <html>
 <jsp:include page="../layouts/head.jsp">
-    <jsp:param name="title" value="Реєстрація" />
+    <jsp:param name="title" value="Додати адміністратора" />
 </jsp:include>
 <body>
-<%@include file="../layouts/header.jsp" %>
+<jsp:include page="../layouts/header.jsp">
+    <jsp:param name="link" value="/admin/add" />
+</jsp:include>
 <main class="main main__wrapper container">
-    <div class="title">Реєстрація</div>
+    <div class="title">Форма адміністратора</div>
+    <c:if test="${not empty successMessage}">
+        <p class="alert alert__success">${successMessage}</p>
+    </c:if>
+    <c:if test="${not empty dangerMessage}">
+        <p class="alert alert__danger">${dangerMessage}</p>
+    </c:if>
     <form:form
-            action="/user/register"
-            modelAttribute="register"
+            action="/admin/add"
+            modelAttribute="admin"
             method="post"
-            cssClass="form form__auth"
+            cssClass="form"
     >
-        <c:if test="${not empty registerMessage}">
-            <p class="alert alert__danger">${registerMessage}</p>
-        </c:if>
-        <div class="form__field">
-            <label for="fullName" class="form__label">ПІБ</label>
-            <form:input path="fullName" cssClass="input" />
-            <form:errors path="fullName" cssClass="field__errors" />
-        </div>
-        <div class="form__field">
-            <label for="phoneNumber" class="form__label">Номер телефону</label>
-            <form:input path="phoneNumber" cssClass="input" />
-            <form:errors path="phoneNumber" cssClass="field__errors" />
-        </div>
+        <form:hidden path="id" />
         <div class="form__field">
             <label for="email" class="form__label">Електронна пошта</label>
             <form:input path="email" cssClass="input" />
@@ -43,11 +39,7 @@
             <form:input path="confirmPassword" type="password" cssClass="input" />
             <form:errors path="confirmPassword" cssClass="field__errors" />
         </div>
-        <button type="submit" class="btn btn__submit auth__btn">Зареєструватися</button>
-        <div class="auth__link">
-            <div>Вже є акаунт?</div>
-            <a href="/user/login">Увійти</a>
-        </div>
+        <button type="submit" class="btn btn__submit">Зберегти</button>
     </form:form>
 </main>
 <%@include file="../layouts/footer.jsp" %>

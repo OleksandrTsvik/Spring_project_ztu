@@ -26,7 +26,7 @@
             <form:input path="name" cssClass="input" />
             <form:errors path="name" cssClass="field__errors" />
         </div>
-        <button type="submit" class="btn form__submit">Зберегти</button>
+        <button type="submit" class="btn btn__submit">Зберегти</button>
     </form:form>
 </main>
 <%@include file="../layouts/footer.jsp" %>

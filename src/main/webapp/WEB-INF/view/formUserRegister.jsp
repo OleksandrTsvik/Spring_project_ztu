@@ -43,7 +43,7 @@
             <form:input path="confirmPassword" type="password" cssClass="input" />
             <form:errors path="confirmPassword" cssClass="field__errors" />
         </div>
-        <button type="submit" class="btn form__submit auth__btn">Зареєструватися</button>
+        <button type="submit" class="btn btn__submit auth__btn">Зареєструватися</button>
         <div class="auth__link">
             <div>Вже є акаунт?</div>
             <a href="/user/login">Увійти</a>
