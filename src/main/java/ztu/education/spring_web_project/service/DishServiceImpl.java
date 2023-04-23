@@ -20,8 +20,26 @@ public class DishServiceImpl implements DishService {
 
     @Override
     @Transactional
+    public Long getCountDishes() {
+        return dishDAO.getCountDishes();
+    }
+
+    @Override
+    @Transactional
     public List<Dish> getAllDishes() {
         return dishDAO.getAllDishes();
+    }
+
+    @Override
+    @Transactional
+    public List<Dish> getDishesByName(String name) {
+        return dishDAO.getDishesByName(name);
+    }
+
+    @Override
+    @Transactional
+    public List<Dish> getDishesByCategory(Integer categoryId) {
+        return dishDAO.getDishesByCategory(categoryId);
     }
 
     @Override
@@ -66,6 +84,12 @@ public class DishServiceImpl implements DishService {
         dish.setPrice(dishDTO.getPrice());
         dish.setImageName(imageName);
 
+        return dishDAO.saveOrUpdateDish(dish);
+    }
+
+    @Override
+    @Transactional
+    public Dish saveOrUpdateDish(Dish dish) {
         return dishDAO.saveOrUpdateDish(dish);
     }
 

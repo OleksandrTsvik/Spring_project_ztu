@@ -12,7 +12,6 @@ import ztu.education.spring_web_project.entity.Dish;
 import ztu.education.spring_web_project.service.CategoryDishService;
 import ztu.education.spring_web_project.service.DishService;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.io.IOException;
@@ -37,17 +36,21 @@ public class DishController {
         return "dish";
     }
 
-    // список страв по пошуку або за категорією
     @RequestMapping("/dishes")
-    public String dishes(HttpServletRequest request, Model model) {
-//    public String dishes(
-//            @RequestParam("dishName") String dishName,
-//            Model model
-//    ) {
-        String dishName = request.getParameter("dishName");
-
-        model.addAttribute("dishes", dishService.getAllDishes());
-        model.addAttribute("dishName", dishName);
+    public String dishes(
+            @RequestParam(value = "dishName", required = false) String dishName,
+            @RequestParam(value = "dishCategoryId", required = false) Integer dishCategoryId,
+            Model model
+    ) {
+        if (dishName != null) {
+            model.addAttribute("searchByDishName", dishName);
+            model.addAttribute("dishes", dishService.getDishesByName(dishName));
+        } else if (dishCategoryId != null) {
+            model.addAttribute("searchByDishCategory", categoryDishService.getCategoryDish(dishCategoryId));
+            model.addAttribute("dishes", dishService.getDishesByCategory(dishCategoryId));
+        } else {
+            model.addAttribute("dishes", dishService.getAllDishes());
+        }
 
         return "listDishes";
     }

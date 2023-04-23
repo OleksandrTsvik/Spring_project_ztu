@@ -52,6 +52,11 @@ public class CategoryDishDAOImpl implements CategoryDishDAO {
     public int deleteCategoryDish(int id) {
         Session session = sessionFactory.getCurrentSession();
 
+        session
+                .createQuery("update Dish set categoryDish.id = null where categoryDish.id = :categoryDishID")
+                .setParameter("categoryDishID", id)
+                .executeUpdate();
+
         return session
                 .createQuery("delete from CategoryDish where id = :categoryDishID")
                 .setParameter("categoryDishID", id)

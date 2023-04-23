@@ -14,7 +14,7 @@
     <c:if test="${not empty categories}">
         <c:forEach var="category" items="${categories}">
             <c:if test="${not empty category.dishes}">
-                <div class="category__title">${category.name}</div>
+                <a href="/dishes?dishCategoryId=${category.id}" class="category__title">${category.name}</a>
                 <div class="menu__draggable">
                     <div class="draggable__icon-left">
                         <i class="_icon-up-arrow"></i>

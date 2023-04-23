@@ -10,6 +10,12 @@
 </jsp:include>
 <main class="main main__wrapper container">
     <h2 class="title">Страви</h2>
+    <c:if test="${not empty searchByDishName}">
+        <p class="search__parameter">Пошук страв за назвою: "${searchByDishName}"</p>
+    </c:if>
+    <c:if test="${not empty searchByDishCategory}">
+        <p class="search__parameter">Страви з категорії: ${searchByDishCategory.name}</p>
+    </c:if>
     <c:if test="${not empty deleteMessage}">
         <p class="alert alert__info">${deleteMessage}</p>
     </c:if>

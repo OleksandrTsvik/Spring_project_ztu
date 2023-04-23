@@ -14,10 +14,38 @@ public class DishDAOImpl implements DishDAO {
     private SessionFactory sessionFactory;
 
     @Override
+    public Long getCountDishes() {
+        Session session = sessionFactory.getCurrentSession();
+
+        return session.createQuery("select count(*) from Dish", Long.class).getSingleResult();
+    }
+
+    @Override
     public List<Dish> getAllDishes() {
         Session session = sessionFactory.getCurrentSession();
 
         return session.createQuery("from Dish", Dish.class).getResultList();
+    }
+
+    @Override
+    public List<Dish> getDishesByName(String name) {
+        Session session = sessionFactory.getCurrentSession();
+
+        return session
+                // || - оператор конкатенації
+                .createQuery("from Dish where name like '%' || :name || '%'", Dish.class)
+                .setParameter("name", name)
+                .getResultList();
+    }
+
+    @Override
+    public List<Dish> getDishesByCategory(Integer categoryId) {
+        Session session = sessionFactory.getCurrentSession();
+
+        return session
+                .createQuery("from Dish where categoryDish.id = :categoryId", Dish.class)
+                .setParameter("categoryId", categoryId)
+                .getResultList();
     }
 
     @Override

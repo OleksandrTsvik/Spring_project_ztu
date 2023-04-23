@@ -1,6 +1,7 @@
 package ztu.education.spring_web_project.entity;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
@@ -12,6 +13,7 @@ import java.math.BigDecimal;
 @Entity
 @Table(name = "dishes")
 @Data
+@NoArgsConstructor
 public class Dish {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,4 +42,12 @@ public class Dish {
 
     @Column(name = "image_name", length = 256)
     private String imageName;
+
+    public Dish(CategoryDish categoryDish, String name, String description, String components, BigDecimal price) {
+        this.categoryDish = categoryDish;
+        this.name = name;
+        this.description = description;
+        this.components = components;
+        this.price = price;
+    }
 }
