@@ -13,26 +13,31 @@ public class CategoryDishServiceImpl implements CategoryDishService {
     @Autowired
     private CategoryDishDAO categoryDishDAO;
 
+    @Override
     @Transactional
     public List<CategoryDish> getAllCategoriesDish() {
         return categoryDishDAO.getAllCategoriesDish();
     }
 
+    @Override
     @Transactional
     public CategoryDish getCategoryDish(int id) {
         return categoryDishDAO.getCategoryDish(id);
     }
 
+    @Override
     @Transactional
     public CategoryDish findByName(String name) {
         return categoryDishDAO.findByName(name);
     }
 
+    @Override
     @Transactional
     public CategoryDish saveOrUpdateCategoryDish(CategoryDish categoryDish) {
         return categoryDishDAO.saveOrUpdateCategoryDish(categoryDish);
     }
 
+    @Override
     @Transactional
     public int deleteCategoryDish(int id) {
         return categoryDishDAO.deleteCategoryDish(id);

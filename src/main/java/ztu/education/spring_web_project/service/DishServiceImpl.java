@@ -18,20 +18,23 @@ public class DishServiceImpl implements DishService {
     @Autowired
     private DishDAO dishDAO;
 
+    @Override
     @Transactional
     public List<Dish> getAllDishes() {
         return dishDAO.getAllDishes();
     }
 
+    @Override
     @Transactional
     public Dish getDish(int id) {
         return dishDAO.getDish(id);
     }
 
+    @Override
     @Transactional
     public DishSaveDTO getDishSaveDTO(int id) {
         Dish dish = this.getDish(id);
-        
+
         if (dish == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
@@ -48,6 +51,7 @@ public class DishServiceImpl implements DishService {
         return dishSaveDTO;
     }
 
+    @Override
     @Transactional
     public Dish saveOrUpdateDish(DishSaveDTO dishDTO, String pathImagesDir) throws IOException {
         String imageName = FileManager.uploadFile(dishDTO.getImage(), pathImagesDir);
@@ -65,6 +69,7 @@ public class DishServiceImpl implements DishService {
         return dishDAO.saveOrUpdateDish(dish);
     }
 
+    @Override
     @Transactional
     public void deleteDish(int id, String pathImagesDir) throws IOException {
         Dish dish = this.getDish(id);

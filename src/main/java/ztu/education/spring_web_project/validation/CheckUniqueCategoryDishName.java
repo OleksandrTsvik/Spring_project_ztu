@@ -11,9 +11,9 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME) // Інформація про нашу інформацію повинна виконуватися аж до запуску коду
 @Constraint(validatedBy = CheckUniqueCategoryDishNameValidator.class) // Саме даний клас оброблятиме цю інструкцію
 public @interface CheckUniqueCategoryDishName {
-    public String message() default "Name already exists";
+    String message() default "Name already exists";
 
-    public Class<?>[] groups() default {};
+    Class<?>[] groups() default {};
 
-    public Class<? extends Payload>[] payload() default {};
+    Class<? extends Payload>[] payload() default {};
 }

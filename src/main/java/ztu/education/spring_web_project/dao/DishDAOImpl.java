@@ -13,18 +13,21 @@ public class DishDAOImpl implements DishDAO {
     @Autowired
     private SessionFactory sessionFactory;
 
+    @Override
     public List<Dish> getAllDishes() {
         Session session = sessionFactory.getCurrentSession();
 
         return session.createQuery("from Dish", Dish.class).getResultList();
     }
 
+    @Override
     public Dish getDish(int id) {
         Session session = sessionFactory.getCurrentSession();
 
         return session.get(Dish.class, id);
     }
 
+    @Override
     public Dish saveOrUpdateDish(Dish dish) {
         Session session = sessionFactory.getCurrentSession();
         session.saveOrUpdate(dish);
@@ -32,6 +35,7 @@ public class DishDAOImpl implements DishDAO {
         return dish;
     }
 
+    @Override
     public int deleteDish(int id) {
         Session session = sessionFactory.getCurrentSession();
 
@@ -41,6 +45,7 @@ public class DishDAOImpl implements DishDAO {
                 .executeUpdate();
     }
 
+    @Override
     public void deleteDish(Dish dish) {
         Session session = sessionFactory.getCurrentSession();
 

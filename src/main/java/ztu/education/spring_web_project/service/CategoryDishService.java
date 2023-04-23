@@ -5,13 +5,13 @@ import ztu.education.spring_web_project.entity.CategoryDish;
 import java.util.List;
 
 public interface CategoryDishService {
-    public List<CategoryDish> getAllCategoriesDish();
+    List<CategoryDish> getAllCategoriesDish();
 
-    public CategoryDish getCategoryDish(int id);
+    CategoryDish getCategoryDish(int id);
 
-    public CategoryDish findByName(String name);
+    CategoryDish findByName(String name);
 
-    public CategoryDish saveOrUpdateCategoryDish(CategoryDish categoryDish);
+    CategoryDish saveOrUpdateCategoryDish(CategoryDish categoryDish);
 
-    public int deleteCategoryDish(int id);
+    int deleteCategoryDish(int id);
 }

@@ -9,12 +9,14 @@ public class CheckFieldMatchValidator implements ConstraintValidator<CheckFieldM
     private String secondFieldName;
     private String message;
 
+    @Override
     public void initialize(CheckFieldMatch constraintAnnotation) {
         this.firstFieldName = constraintAnnotation.field();
         this.secondFieldName = constraintAnnotation.fieldMatch();
         this.message = constraintAnnotation.message();
     }
 
+    @Override
     public boolean isValid(Object object, ConstraintValidatorContext constraintContext) {
         boolean isValid = false;
 
