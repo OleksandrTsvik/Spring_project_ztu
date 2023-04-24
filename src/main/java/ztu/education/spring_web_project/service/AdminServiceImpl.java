@@ -84,7 +84,7 @@ public class AdminServiceImpl implements AdminService {
         Admin admin = adminDAO.getAdmin(id);
 
         if (admin != null && admin.getEmail().equals("admin@gmail.com")) {
-            return 0;
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Неможливо видалити головного адміністратора");
         }
 
         return adminDAO.deleteAdmin(id);
