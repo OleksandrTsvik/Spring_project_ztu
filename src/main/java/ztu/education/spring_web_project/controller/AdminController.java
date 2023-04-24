@@ -108,7 +108,12 @@ public class AdminController {
 
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
     public String deleteAdmin(@PathVariable("id") int id, Model model) {
-        model.addAttribute("deleteMessage", "Кількість видалених записів = " + adminService.deleteAdmin(id));
+        try {
+            model.addAttribute("deleteMessage", "Кількість видалених записів = " + adminService.deleteAdmin(id));
+        } catch (ResponseStatusException ex) {
+            model.addAttribute("deleteMessage", ex.getReason());
+        }
+
         model.addAttribute("admins", adminService.getAllAdmins());
 
         return "listAdmins";
