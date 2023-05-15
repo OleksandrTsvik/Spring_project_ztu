@@ -11,7 +11,11 @@ public interface UserService {
 
     User login(UserLoginDTO userLoginDTO);
 
+    User login(String email, String password);
+
     List<User> getAllUsers();
 
     int deleteUser(int id);
+
+    String toggleUser(int id);
 }

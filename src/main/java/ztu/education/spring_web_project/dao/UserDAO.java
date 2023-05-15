@@ -5,6 +5,8 @@ import ztu.education.spring_web_project.entity.User;
 import java.util.List;
 
 public interface UserDAO {
+    User getUser(int id);
+
     User findByEmail(String email);
 
     User findByPhoneNumber(String phoneNumber);

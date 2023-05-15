@@ -2,6 +2,7 @@ package ztu.education.spring_web_project.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
@@ -13,6 +14,8 @@ import java.util.List;
 
 @Service
 public class AdminServiceImpl implements AdminService {
+    @Autowired
+    BCryptPasswordEncoder bCryptPasswordEncoder;
     @Autowired
     private AdminDAO adminDAO;
 
@@ -50,8 +53,7 @@ public class AdminServiceImpl implements AdminService {
 
         newAdmin.setId(adminSaveDTO.getId());
         newAdmin.setEmail(adminSaveDTO.getEmail());
-        // add encrypt
-        newAdmin.setPassword(adminSaveDTO.getPassword());
+        newAdmin.setPassword(bCryptPasswordEncoder.encode(adminSaveDTO.getPassword()));
 
         return adminDAO.saveOrUpdateAdmin(newAdmin);
     }
@@ -65,11 +67,17 @@ public class AdminServiceImpl implements AdminService {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Неправильна електронна адреса або пароль");
         }
 
-        if (!adminByEmail.getPassword().equals(admin.getPassword())) {
+        if (!bCryptPasswordEncoder.matches(admin.getPassword(), adminByEmail.getPassword())) {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Неправильна електронна адреса або пароль");
         }
 
         return adminByEmail;
+    }
+
+    @Override
+    @Transactional
+    public Admin login(String email, String password) {
+        return this.login(new Admin(email, password));
     }
 
     @Override

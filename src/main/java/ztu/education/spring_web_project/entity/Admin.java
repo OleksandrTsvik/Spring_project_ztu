@@ -1,6 +1,7 @@
 package ztu.education.spring_web_project.entity;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -10,6 +11,7 @@ import javax.validation.constraints.Size;
 @Entity
 @Table(name = "admins")
 @Data
+@NoArgsConstructor
 public class Admin {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,4 +26,9 @@ public class Admin {
     @NotBlank(message = "Введіть пароль")
     @Column(name = "password", nullable = false, length = 256)
     private String password;
+
+    public Admin(String email, String password) {
+        this.email = email;
+        this.password = password;
+    }
 }

@@ -10,8 +10,8 @@
 </jsp:include>
 <main class="main main__wrapper container">
     <h2 class="title">Користувачі</h2>
-    <c:if test="${not empty deleteMessage}">
-        <p class="alert alert__info">${deleteMessage}</p>
+    <c:if test="${not empty infoMessage}">
+        <p class="alert alert__info">${infoMessage}</p>
     </c:if>
     <c:if test="${empty users}">
         <div class="empty-block">Користувачі відсутні</div>
@@ -33,6 +33,14 @@
                     <td>${user.email}</td>
                     <td>
                         <div class="actions">
+                            <c:if test="${user.enabled}">
+                                <a href="/admin/user/toggle/${user.id}" title="Заблокувати"
+                                   class="_icon-eye btn btn__action"></a>
+                            </c:if>
+                            <c:if test="${not user.enabled}">
+                                <a href="/admin/user/toggle/${user.id}" title="Розблокувати"
+                                   class="_icon-eye-blocked btn btn__danger btn__action"></a>
+                            </c:if>
                             <a href="/admin/user/delete/${user.id}"
                                class="_icon-trash btn btn__danger btn__action"></a>
                         </div>

@@ -10,23 +10,21 @@
 <main class="main main__wrapper container">
     <div class="title">Вхід</div>
     <form:form
+            id="form-login"
             action="/user/login"
-            modelAttribute="login"
             method="post"
             cssClass="form form__auth"
     >
-        <c:if test="${not empty loginMessage}">
-            <p class="alert alert__danger">${loginMessage}</p>
+        <c:if test="${not empty sessionScope['SPRING_SECURITY_LAST_EXCEPTION']}">
+            <p class="alert alert__danger">${sessionScope['SPRING_SECURITY_LAST_EXCEPTION'].message}</p>
         </c:if>
         <div class="form__field">
             <label for="email" class="form__label">Електронна пошта</label>
-            <form:input path="email" cssClass="input" />
-            <form:errors path="email" cssClass="field__errors" />
+            <input class="input" name="email" id="email" />
         </div>
         <div class="form__field">
             <label for="password" class="form__label">Пароль</label>
-            <form:input path="password" type="password" cssClass="input" />
-            <form:errors path="password" cssClass="field__errors" />
+            <input type="password" class="input" name="password" id="password" />
         </div>
         <button type="submit" class="btn btn__submit auth__btn">Увійти</button>
         <div class="auth__link">
