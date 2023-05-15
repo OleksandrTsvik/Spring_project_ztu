@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'icons';
-  src: url('../fonts/icons.eot?i4yuq9');
-  src: url('../fonts/icons.eot?i4yuq9#iefix') format('embedded-opentype'),
-  url('../fonts/icons.ttf?i4yuq9') format('truetype'),
-  url('../fonts/icons.woff?i4yuq9') format('woff'),
-  url('../fonts/icons.svg?i4yuq9#icons') format('svg');
+  src: url('../fonts/icons.eot?wtztjt');
+  src: url('../fonts/icons.eot?wtztjt#iefix') format('embedded-opentype'),
+  url('../fonts/icons.ttf?wtztjt') format('truetype'),
+  url('../fonts/icons.woff?wtztjt') format('woff'),
+  url('../fonts/icons.svg?wtztjt#icons') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -41,70 +41,74 @@
   content: "\e903";
 }
 
-._icon-facebook:before {
+._icon-eye:before {
   content: "\e904";
 }
 
-._icon-home:before {
+._icon-eye-blocked:before {
+  content: "\e905";
+}
+
+._icon-facebook:before {
   content: "\e906";
 }
 
-._icon-instagram:before {
+._icon-home:before {
   content: "\e907";
 }
 
-._icon-lightning:before {
+._icon-instagram:before {
   content: "\e908";
 }
 
-._icon-location:before {
+._icon-lightning:before {
   content: "\e909";
 }
 
-._icon-message:before {
+._icon-location:before {
   content: "\e90a";
 }
 
-._icon-minus:before {
+._icon-message:before {
   content: "\e90b";
 }
 
-._icon-pencil1:before {
+._icon-minus:before {
   content: "\e90c";
 }
 
-._icon-plus:before {
+._icon-pencil:before {
   content: "\e90d";
 }
 
-._icon-products:before {
+._icon-plus:before {
   content: "\e90e";
 }
 
-._icon-search:before {
+._icon-products:before {
   content: "\e90f";
 }
 
-._icon-telegram:before {
+._icon-search:before {
   content: "\e910";
 }
 
-._icon-trash:before {
+._icon-telegram:before {
   content: "\e911";
 }
 
-._icon-up-arrow:before {
+._icon-trash:before {
   content: "\e912";
 }
 
-._icon-user:before {
+._icon-up-arrow:before {
   content: "\e913";
 }
 
-._icon-youtube:before {
+._icon-user:before {
   content: "\e914";
 }
 
-._icon-pencil:before {
-  content: "\e905";
+._icon-youtube:before {
+  content: "\e915";
 }

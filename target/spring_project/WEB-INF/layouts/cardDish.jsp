@@ -1,5 +1,6 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 
 <c:if test="${not empty requestScope.dish}">
     <div class="card__dish">
@@ -16,14 +17,16 @@
         <div class="card__content">
             <div class="card__body">
                 <p>${requestScope.dish.name}</p>
-                <p class="card__dish-price">${requestScope.dish.price}</p>
+                <p class="card__dish-price">${requestScope.dish.price} грн.</p>
             </div>
-            <div class="card__footer">
-                <a href="/admin/dish/edit/${requestScope.dish.id}"
-                   class="_icon-pencil btn btn__primary btn__action"></a>
-                <a href="/admin/dish/delete/${requestScope.dish.id}"
-                   class="_icon-trash btn btn__danger btn__action"></a>
-            </div>
+            <security:authorize access="hasRole('ADMIN')">
+                <div class="card__footer">
+                    <a href="/admin/dish/edit/${requestScope.dish.id}"
+                       class="_icon-pencil btn btn__primary btn__action"></a>
+                    <a href="/admin/dish/delete/${requestScope.dish.id}"
+                       class="_icon-trash btn btn__danger btn__action"></a>
+                </div>
+            </security:authorize>
         </div>
     </div>
 </c:if>

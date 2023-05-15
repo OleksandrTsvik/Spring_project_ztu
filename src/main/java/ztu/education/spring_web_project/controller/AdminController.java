@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.server.ResponseStatusException;
 import ztu.education.spring_web_project.dto.AdminSaveDTO;
-import ztu.education.spring_web_project.entity.Admin;
 import ztu.education.spring_web_project.service.AdminService;
 import ztu.education.spring_web_project.service.UserService;
 
@@ -25,34 +24,34 @@ public class AdminController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String login(Model model) {
-        model.addAttribute("login", new Admin());
+//    @RequestMapping(value = "/login", method = RequestMethod.GET)
+//    public String login(Model model) {
+//        model.addAttribute("login", new Admin());
+//
+//        return "formAdminLogin";
+//    }
 
-        return "formAdminLogin";
-    }
-
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String login(
-            @Valid @ModelAttribute("login") Admin admin,
-            BindingResult bindingResult,
-            Model model
-    ) {
-        model.addAttribute("login", admin);
-
-        if (bindingResult.hasErrors()) {
-            return "formAdminLogin";
-        }
-
-        try {
-            adminService.login(admin);
-        } catch (ResponseStatusException ex) {
-            model.addAttribute("loginMessage", ex.getReason());
-            return "formAdminLogin";
-        }
-
-        return "redirect:/";
-    }
+//    @RequestMapping(value = "/login", method = RequestMethod.POST)
+//    public String login(
+//            @Valid @ModelAttribute("login") Admin admin,
+//            BindingResult bindingResult,
+//            Model model
+//    ) {
+//        model.addAttribute("login", admin);
+//
+//        if (bindingResult.hasErrors()) {
+//            return "formAdminLogin";
+//        }
+//
+//        try {
+//            adminService.login(admin);
+//        } catch (ResponseStatusException ex) {
+//            model.addAttribute("loginMessage", ex.getReason());
+//            return "formAdminLogin";
+//        }
+//
+//        return "redirect:/";
+//    }
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String register(Model model) {
@@ -128,7 +127,15 @@ public class AdminController {
 
     @RequestMapping(value = "/user/delete/{id}", method = RequestMethod.GET)
     public String deleteUser(@PathVariable("id") int id, Model model) {
-        model.addAttribute("deleteMessage", "Кількість видалених записів = " + userService.deleteUser(id));
+        model.addAttribute("infoMessage", "Кількість видалених записів = " + userService.deleteUser(id));
+        model.addAttribute("users", userService.getAllUsers());
+
+        return "listUsers";
+    }
+
+    @RequestMapping(value = "/user/toggle/{id}", method = RequestMethod.GET)
+    public String toggleUser(@PathVariable("id") int id, Model model) {
+        model.addAttribute("infoMessage", userService.toggleUser(id));
         model.addAttribute("users", userService.getAllUsers());
 
         return "listUsers";

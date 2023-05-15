@@ -24,4 +24,7 @@ public class User {
 
     @Column(name = "password", nullable = false, length = 256)
     private String password;
+
+    @Column(name = "enabled", columnDefinition = "BOOLEAN", nullable = false)
+    private boolean isEnabled;
 }

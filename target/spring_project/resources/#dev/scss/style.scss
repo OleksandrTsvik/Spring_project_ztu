@@ -99,7 +99,7 @@ body {
   }
 
   th.actions {
-    width: 68px;
+    width: 148px;
   }
 
   td .actions {
@@ -237,12 +237,12 @@ body {
   }
 
   &__body {
-    flex: 0 0 50%;
+    flex-grow: 1;
     display: flex;
     flex-direction: column;
     gap: 10px;
     justify-content: space-between;
-    padding: 30px 0;
+    padding: 30px 10px 30px 0;
 
     @media (max-width: $md3) {
       flex: 0 0 100%;
@@ -307,11 +307,11 @@ body {
   color: #CFCFCF;
 }
 
-.container__404 {
+.container__status-error {
   display: flex;
   justify-content: center;
 
-  .wrapper__404 {
+  .status-error__wrapper {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -320,18 +320,36 @@ body {
     color: #FFFFFF;
   }
 
-  .btn__404 {
+  .btn__status-error {
     display: inline-flex;
     justify-content: center;
     align-items: center;
     gap: 4px;
     margin-top: 10px;
     color: #222222;
-    background: linear-gradient(315deg, #b8c6db 0%, #f5f7fa 74%);
 
     &:before {
       font-size: 16px;
       margin-right: 4px;
     }
+  }
+
+  .btn {
+    &__404 {
+      background: linear-gradient(315deg, #b8c6db 0%, #f5f7fa 74%);
+    }
+
+    &__403 {
+      background: linear-gradient(315deg, #d99058 0%, #f8de7e 74%);
+    }
+  }
+}
+
+.user_info {
+  margin-top: 20px;
+
+  h4 {
+    font-size: 18px;
+    font-weight: bold;
   }
 }

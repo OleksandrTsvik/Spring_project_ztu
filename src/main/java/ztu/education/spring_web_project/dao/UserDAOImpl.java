@@ -14,6 +14,13 @@ public class UserDAOImpl implements UserDAO {
     private SessionFactory sessionFactory;
 
     @Override
+    public User getUser(int id) {
+        Session session = sessionFactory.getCurrentSession();
+
+        return session.get(User.class, id);
+    }
+
+    @Override
     public User findByEmail(String email) {
         Session session = sessionFactory.getCurrentSession();
 

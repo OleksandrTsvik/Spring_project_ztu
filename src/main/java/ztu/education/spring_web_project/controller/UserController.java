@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.server.ResponseStatusException;
-import ztu.education.spring_web_project.dto.UserLoginDTO;
 import ztu.education.spring_web_project.dto.UserRegisterDTO;
 import ztu.education.spring_web_project.service.UserService;
 
@@ -20,34 +19,34 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String login(Model model) {
-        model.addAttribute("login", new UserLoginDTO());
+//    @RequestMapping(value = "/login", method = RequestMethod.GET)
+//    public String login(Model model) {
+//        model.addAttribute("login", new UserLoginDTO());
+//
+//        return "formUserLogin";
+//    }
 
-        return "formUserLogin";
-    }
-
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String login(
-            @Valid @ModelAttribute("login") UserLoginDTO userLoginDTO,
-            BindingResult bindingResult,
-            Model model
-    ) {
-        model.addAttribute("login", userLoginDTO);
-
-        if (bindingResult.hasErrors()) {
-            return "formUserLogin";
-        }
-
-        try {
-            userService.login(userLoginDTO);
-        } catch (ResponseStatusException ex) {
-            model.addAttribute("loginMessage", ex.getReason());
-            return "formUserLogin";
-        }
-
-        return "redirect:/";
-    }
+//    @RequestMapping(value = "/login", method = RequestMethod.POST)
+//    public String login(
+//            @Valid @ModelAttribute("login") UserLoginDTO userLoginDTO,
+//            BindingResult bindingResult,
+//            Model model
+//    ) {
+//        model.addAttribute("login", userLoginDTO);
+//
+//        if (bindingResult.hasErrors()) {
+//            return "formUserLogin";
+//        }
+//
+//        try {
+//            userService.login(userLoginDTO);
+//        } catch (ResponseStatusException ex) {
+//            model.addAttribute("loginMessage", ex.getReason());
+//            return "formUserLogin";
+//        }
+//
+//        return "redirect:/";
+//    }
 
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public String register(Model model) {

@@ -14,6 +14,8 @@ public interface AdminService {
 
     Admin login(Admin admin);
 
+    Admin login(String email, String password);
+
     List<Admin> getAllAdmins();
 
     int deleteAdmin(int id);
