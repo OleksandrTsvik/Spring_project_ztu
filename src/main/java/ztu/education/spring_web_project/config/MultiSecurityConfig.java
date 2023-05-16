@@ -34,18 +34,26 @@ public class MultiSecurityConfig {
         protected void configure(HttpSecurity http) throws Exception {
             http.authenticationProvider(authenticationProviderForUser());
 
-            http.antMatcher("/user/**").csrf().disable()
+            http.csrf().disable();
+
+            http.antMatcher("/user/**")
                     .authorizeRequests()
+                    .antMatchers("/", "/resources/**").permitAll()
+                    .antMatchers("/dish/**", "/dishes/**").permitAll()
                     .antMatchers("/user/register", "/user/login", "/admin/login").anonymous()
                     .antMatchers("/user/**").hasRole("USER")
+                    .antMatchers("/admin/**").hasRole("ADMIN")
+                    // Усі інші сторінки є загальнодоступними для коректного відображення помилки 404
+                    // Вказувати не обов'язково завдяки наступному налаштуванню
+                    // .anyRequest().permitAll()
 
                     .and()
+                    // Налаштування до яких запитів будуть застосовуватися правила автентифікації та авторизації
                     .requestMatchers()
-                    .antMatchers("/", "/resources/**")
-                    .antMatchers("/dish/**", "/dishes/**")
-                    .antMatchers("/user/**")
+                    .regexMatchers("^(?!/admin).*") // всі посилання окрім /admin
+
                     // Усі інші сторінки потребують аутентифікації
-//                    .and().authorizeRequests().anyRequest().authenticated()
+                    // .and().authorizeRequests().anyRequest().authenticated()
 
                     .and()
                     // Налаштування для входу в систему
@@ -80,7 +88,9 @@ public class MultiSecurityConfig {
         protected void configure(HttpSecurity http) throws Exception {
             http.authenticationProvider(authenticationProviderForAdmin());
 
-            http.antMatcher("/admin/**").csrf().disable()
+            http.csrf().disable();
+
+            http.antMatcher("/admin/**")
                     .authorizeRequests()
                     .antMatchers("/user/register", "/user/login", "/admin/login").anonymous()
                     .antMatchers("/admin/**").hasRole("ADMIN")
