@@ -43,6 +43,8 @@ public class AdminDAOImpl implements AdminDAO {
     @Override
     public Admin saveOrUpdateAdmin(Admin admin) {
         Session session = sessionFactory.getCurrentSession();
+
+        session.clear();
         session.saveOrUpdate(admin);
 
         return admin;

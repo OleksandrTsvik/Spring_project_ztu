@@ -15,7 +15,7 @@ import javax.validation.constraints.Size;
 public class Admin {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     @NotBlank(message = "Введіть електронну пошту")
     @Size(max = 64, message = "Електронна адреса повинна містити не більше 64 символів")

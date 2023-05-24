@@ -10,8 +10,8 @@ import javax.validation.constraints.Size;
 @Data
 @CheckFieldMatch(field = "password", fieldMatch = "confirmPassword", message = "Паролі не співпадають")
 public class AdminSaveDTO {
-    private int id;
-    
+    private Integer id;
+
     @NotBlank(message = "Введіть електронну пошту")
     @Size(max = 64, message = "Назва страви повинна містити не більше 64 символів")
     @Email(message = "Некоректна електронна адреса")

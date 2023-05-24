@@ -45,7 +45,15 @@ public class AdminServiceImpl implements AdminService {
     @Override
     @Transactional
     public Admin register(AdminSaveDTO adminSaveDTO) {
-        if (adminDAO.findByEmail(adminSaveDTO.getEmail()) != null) {
+        Admin adminById = null;
+        if (adminSaveDTO.getId() != null) {
+            adminById = adminDAO.getAdmin(adminSaveDTO.getId());
+        }
+
+        if (
+                (adminById != null && !adminById.getEmail().equals(adminSaveDTO.getEmail())) &&
+                        adminDAO.findByEmail(adminSaveDTO.getEmail()) != null
+        ) {
             throw new ResponseStatusException(HttpStatus.CONFLICT, "Електронна адреса уже використовується");
         }
 
